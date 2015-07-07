@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "AFNetworking.h"
+#import "AFNetworkActivityLogger.h"
+
+//URL for the staging server
+static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1/";
 
 @interface AppDelegate ()
 
@@ -16,10 +21,60 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger]setLevel: AFLoggerLevelDebug];
+    
+    // authentication should happen here.
+    
+    NSString *northstarApiKey = @"northstarApiKey";
+    NSString *userEmail = @"userEmail";
+    NSString *userPassword = @"userPassword";
+    NSString *appId = @"appId";
+    
+    NSDictionary *keysDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"keys" ofType:@"plist"]];
+    
+    // Creates an NSURL object, used to make an NSURLRequest
+    NSString *urlString = [NSString stringWithFormat:@"%@login", BaseURLString];
+    NSString *apiKeyHeader = keysDictionary[northstarApiKey];
+    NSString *appIdHeader = keysDictionary[appId];
+    NSString *bodyString = [NSString stringWithFormat:@"{ \"email\": \"%@\", \"password\":\"%@\"}", keysDictionary[userEmail], keysDictionary[userPassword]];
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:apiKeyHeader forHTTPHeaderField:@"X-DS-REST-API-KEY"];
+    [request setValue:appIdHeader forHTTPHeaderField:@"X-DS-Application-Id"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+
+
+    [request setHTTPMethod:@"POST"];
+    
+    // AFHTTPRequestOperation is an all-in-one class for handling HTTP transfers.
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    // Indicates that the response should be parsed as JSON.
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [operation responseString];
+        NSLog(@"&&&response: %@", response);
+        NSLog(@"&&&JSON: %@", operation.responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"&&&Unresolved error logging in: %@", error);
+    }];
+    
+    [operation start];
+
     return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
