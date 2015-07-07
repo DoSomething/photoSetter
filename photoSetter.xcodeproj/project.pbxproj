@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3B07E124010E1226B3D5E595 /* libPods-photoSetter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C04D947B1AE178E1A0ACE94 /* libPods-photoSetter.a */; };
+		EAE2CCF61B4C8B5F00FC34C2 /* PHSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2CCF41B4C8B5F00FC34C2 /* PHSSettingsViewController.m */; };
+		EAE2CCF71B4C8B5F00FC34C2 /* PHSSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE2CCF51B4C8B5F00FC34C2 /* PHSSettingsViewController.xib */; };
 		EAE449051B45817F004DE149 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE449041B45817F004DE149 /* main.m */; };
 		EAE449081B45817F004DE149 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE449071B45817F004DE149 /* AppDelegate.m */; };
 		EAE449101B45817F004DE149 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAE4490F1B45817F004DE149 /* Images.xcassets */; };
@@ -30,6 +32,9 @@
 		3C04D947B1AE178E1A0ACE94 /* libPods-photoSetter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-photoSetter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAEB3E9764E4BED04F497C1 /* Pods-photoSetter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoSetter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-photoSetter/Pods-photoSetter.debug.xcconfig"; sourceTree = "<group>"; };
 		DD547600B14A3C96678AA9D1 /* Pods-photoSetter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoSetter.release.xcconfig"; path = "Pods/Target Support Files/Pods-photoSetter/Pods-photoSetter.release.xcconfig"; sourceTree = "<group>"; };
+		EAE2CCF31B4C8B5F00FC34C2 /* PHSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSSettingsViewController.h; sourceTree = "<group>"; };
+		EAE2CCF41B4C8B5F00FC34C2 /* PHSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSSettingsViewController.m; sourceTree = "<group>"; };
+		EAE2CCF51B4C8B5F00FC34C2 /* PHSSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHSSettingsViewController.xib; sourceTree = "<group>"; };
 		EAE448FF1B45817F004DE149 /* photoSetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoSetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE449031B45817F004DE149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAE449041B45817F004DE149 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +109,9 @@
 			children = (
 				EAE449061B45817F004DE149 /* AppDelegate.h */,
 				EAE449071B45817F004DE149 /* AppDelegate.m */,
+				EAE2CCF31B4C8B5F00FC34C2 /* PHSSettingsViewController.h */,
+				EAE2CCF41B4C8B5F00FC34C2 /* PHSSettingsViewController.m */,
+				EAE2CCF51B4C8B5F00FC34C2 /* PHSSettingsViewController.xib */,
 				EAE4490F1B45817F004DE149 /* Images.xcassets */,
 				EAE449111B45817F004DE149 /* LaunchScreen.xib */,
 				EAE449021B45817F004DE149 /* Supporting Files */,
@@ -221,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAE449131B45817F004DE149 /* LaunchScreen.xib in Resources */,
+				EAE2CCF71B4C8B5F00FC34C2 /* PHSSettingsViewController.xib in Resources */,
 				EAE449101B45817F004DE149 /* Images.xcassets in Resources */,
 				EAE4492F1B45B8A9004DE149 /* keys.plist in Resources */,
 			);
@@ -275,6 +284,7 @@
 			files = (
 				EAE449081B45817F004DE149 /* AppDelegate.m in Sources */,
 				EAE449051B45817F004DE149 /* main.m in Sources */,
+				EAE2CCF61B4C8B5F00FC34C2 /* PHSSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
