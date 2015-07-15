@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface PHSSettingsViewController : UIViewController
+- (IBAction)addPhoto:(id)sender;
+- (IBAction)uploadPhoto:(id)sender;
+- (IBAction)logout:(id)sender;
 
 @end

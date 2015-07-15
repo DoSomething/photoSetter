@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityLogger.h"
+#import "PHSSettingsViewController.h"
+#import "PHSImageViewController.h"
 
 //URL for the staging server
 static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1/";
@@ -23,6 +25,15 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    PHSSettingsViewController *settingsVC = [[PHSSettingsViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsVC];
+    self.window.rootViewController = navController;
+    
+    
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
