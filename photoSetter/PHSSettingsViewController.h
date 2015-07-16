@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PHSImageViewController.h"
 
-@interface PHSSettingsViewController : UIViewController
+@interface PHSSettingsViewController : UIViewController <PHSImageViewControllerDelegate>
 - (IBAction)addPhoto:(id)sender;
 - (IBAction)uploadPhoto:(id)sender;
 - (IBAction)logout:(id)sender;
-
 @end
