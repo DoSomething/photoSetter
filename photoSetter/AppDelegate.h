@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property(nonatomic, retain) NSMutableString *sessionId;
+
+@property(nonatomic, retain) NSMutableString *userId;
 
 @end
-

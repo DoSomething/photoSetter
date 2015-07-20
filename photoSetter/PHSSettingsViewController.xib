@@ -24,15 +24,6 @@
                         <action selector="uploadPhoto:" destination="-1" eventType="touchUpInside" id="eNf-O3-jM4"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-5x-gKs">
-                    <rect key="frame" x="0.0" y="254" width="600" height="116"/>
-                    <state key="normal" title="ADD PHOTO">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addPhoto:" destination="-1" eventType="touchUpInside" id="K4I-0J-AJg"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfp-Zt-1LP">
                     <rect key="frame" x="0.0" y="484" width="600" height="116"/>
                     <state key="normal" title="LOGOUT">
@@ -45,6 +36,15 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cla-La-TDa">
                     <rect key="frame" x="193" y="60" width="240" height="177"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-5x-gKs">
+                    <rect key="frame" x="0.0" y="254" width="600" height="116"/>
+                    <state key="normal" title="ADD PHOTO">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addPhoto:" destination="-1" eventType="touchUpInside" id="K4I-0J-AJg"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
         </view>

@@ -31,16 +31,11 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsVC];
     self.window.rootViewController = navController;
     
-    
-    
-    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     [[AFNetworkActivityLogger sharedLogger]setLevel: AFLoggerLevelDebug];
-    
-    // authentication should happen here.
     
     NSString *northstarApiKey = @"northstarApiKey";
     NSString *userEmail = @"userEmail";
@@ -65,7 +60,6 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
 
     [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 
-
     [request setHTTPMethod:@"POST"];
     
     // AFHTTPRequestOperation is an all-in-one class for handling HTTP transfers.
@@ -75,9 +69,20 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *response = [operation responseString];
-        NSLog(@"&&&response: %@", response);
-        NSLog(@"&&&JSON: %@", operation.responseObject);
+        NSDictionary *objectData = operation.responseObject;
+        if ([NSJSONSerialization isValidJSONObject:objectData]) {
+            NSMutableString *sessionToken = objectData[@"data"][@"session_token"];
+            NSLog(@"Session Token: %@ \n", sessionToken);
+            _sessionId = sessionToken;
+            
+            NSMutableString *userId = objectData[@"data"][@"_id"];
+            _userId = userId;
+            NSLog(@"userId: %@ \n", _userId);
+        }
+        else {
+            [NSException raise:@"Response returned from API is invalid" format:@"JSON response is invalid: %@", objectData];
+        }
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"&&&Unresolved error logging in: %@", error);
     }];

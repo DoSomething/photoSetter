@@ -72,12 +72,9 @@
     // If it's an image, it's displayed on the view image object of the user interface.
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         
-        
-        
-        
         UIImage *image = info[UIImagePickerControllerOriginalImage];
         
-        // Where the hell does the local variable below come from? Has is this implicitly defined?
+        // Local property pointing to the UIImageView, defined in the header file.
         _imageView.image = image;
         
         // Xcode will complain if we access a weak property more than once here,
@@ -91,7 +88,6 @@
         if ([strongDelegate respondsToSelector:@selector(PHSImageViewController:didChooseImage:)]) {
             [strongDelegate PHSImageViewController:self didChooseImage:image];
         }
-        
         
         // If it's a new image it's saved to the camera roll.
         if (_newMedia) {
