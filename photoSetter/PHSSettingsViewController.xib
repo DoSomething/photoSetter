@@ -15,34 +15,58 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHo-V7-t4n">
-                    <rect key="frame" x="0.0" y="367" width="600" height="116"/>
-                    <state key="normal" title="UPLOAD PHOTO">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="uploadPhoto:" destination="-1" eventType="touchUpInside" id="eNf-O3-jM4"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfp-Zt-1LP">
-                    <rect key="frame" x="0.0" y="484" width="600" height="116"/>
-                    <state key="normal" title="LOGOUT">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="logout:" destination="-1" eventType="touchUpInside" id="A9O-S8-CjU"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cla-La-TDa">
-                    <rect key="frame" x="193" y="60" width="240" height="177"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-5x-gKs">
                     <rect key="frame" x="0.0" y="254" width="600" height="116"/>
                     <state key="normal" title="ADD PHOTO">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="-100" y="253" width="600" height="116"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="-100" y="323" width="600" height="116"/>
+                    </variation>
                     <connections>
                         <action selector="addPhoto:" destination="-1" eventType="touchUpInside" id="K4I-0J-AJg"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cla-La-TDa">
+                    <rect key="frame" x="193" y="60" width="240" height="177"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="80" y="47" width="240" height="177"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="80" y="104" width="240" height="177"/>
+                    </variation>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfp-Zt-1LP">
+                    <rect key="frame" x="0.0" y="484" width="600" height="116"/>
+                    <state key="normal" title="LOGOUT">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="-100" y="484" width="600" height="116"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="-105" y="556" width="600" height="116"/>
+                    </variation>
+                    <connections>
+                        <action selector="logout:" destination="-1" eventType="touchUpInside" id="A9O-S8-CjU"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHo-V7-t4n">
+                    <rect key="frame" x="0.0" y="367" width="600" height="116"/>
+                    <state key="normal" title="UPLOAD PHOTO">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="-100" y="367" width="600" height="116"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="-100" y="441" width="600" height="116"/>
+                    </variation>
+                    <connections>
+                        <action selector="uploadPhoto:" destination="-1" eventType="touchUpInside" id="eNf-O3-jM4"/>
                     </connections>
                 </button>
             </subviews>

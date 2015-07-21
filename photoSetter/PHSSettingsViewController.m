@@ -32,6 +32,11 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
 }
 
 - (IBAction)uploadPhoto:(id)sender {
+    
+    if (!_imageView.image) {
+        // @TODO: add alert here that a photo must be selected.
+        return;
+    }
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -44,8 +49,6 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
     NSString *contentType = @"multipart/form-data";
     NSString *accept = @"application/json";
     
-    
-    
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:BaseURLString]];
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -57,22 +60,15 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
     [manager.requestSerializer setValue:contentType forHTTPHeaderField:@"Content-Type"];
     [manager.requestSerializer setValue:accept forHTTPHeaderField:@"Accept"];
     
-    // Image objects are immutable and do not provide direct access to their underlying image data. You can get an NSData object containing a JPEG representation of the image data using UIImageJPEGRepresentation.
-    // Taking the image from the _imageView property.
+    // Image objects are immutable and do not provide direct access to their underlying image data. You can get an NSData object containing a JPEG representation of the image data using UIImageJPEGRepresentation.    // Taking the image from the _imageView property.
     NSData *imageData = UIImageJPEGRepresentation(_imageView.image, 1.0);
-    
-//    NSLog(@"image data: &&&&& %@", imageData);
+
     
     // We need to construct the URL string with the userId.
     NSString *urlPath = [NSString stringWithFormat:@"users/%@/avatar", userId];
-//    NSString *paramNameForImage = [NSString stringWithFormat:@"User_%@_ProfileImage", userId];
     NSString *fileNameForImage = [NSString stringWithFormat:@"User_%@_ProfileImage", userId];
     
-    NSLog(@"Url Path: %@", urlPath);
-    
-    NSDictionary *parameters = @{};
-
-    AFHTTPRequestOperation *op = [manager POST:urlPath parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    AFHTTPRequestOperation *op = [manager POST:urlPath parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // Appending the image to the body.
         [formData appendPartWithFileData:imageData name:@"photo" fileName:fileNameForImage mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -84,6 +80,9 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
 }
 
 - (IBAction)logout:(id)sender {
+    
+    
+    
 }
 
 - (void)PHSImageViewController:(PHSImageViewController *)viewController didChooseImage:(UIImage *)image {
