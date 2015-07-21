@@ -13,7 +13,7 @@
 #import "PHSImageViewController.h"
 
 //URL for the staging server
-static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1/";
+static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v1/";
 
 @interface AppDelegate ()
 
@@ -53,7 +53,7 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:apiKeyHeader forHTTPHeaderField:@"X-DS-REST-API-KEY"];
+    [request setValue:apiKeyHeader forHTTPHeaderField:@"X-DS-REST-API-Key"];
     [request setValue:appIdHeader forHTTPHeaderField:@"X-DS-Application-Id"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];

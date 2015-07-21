@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 //URL for the staging server. @TODO: create global variable for below.
-static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1/";
+static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v1/";
 
 @interface PHSSettingsViewController ()
 
@@ -81,8 +81,35 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
 
 - (IBAction)logout:(id)sender {
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    NSString *sessionId = appDelegate.sessionId;
     
+    NSDictionary *keysDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"keys" ofType:@"plist"]];
+    
+    NSString *appId = keysDictionary[@"appId"];
+    NSString *apiKey = keysDictionary[@"northstarApiKey"];
+    
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:BaseURLString]];
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager.requestSerializer setValue:appId forHTTPHeaderField:@"X-DS-Application-Id"];
+    [manager.requestSerializer setValue:apiKey forHTTPHeaderField:@"X-DS-REST-API-Key"];
+    [manager.requestSerializer setValue:sessionId forHTTPHeaderField:@"Session"];
+    
+    NSString *urlPath = [NSString stringWithFormat:@"logout"];
+    
+    AFHTTPRequestOperation *op = [manager POST:urlPath parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // no body necessary
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Successful logout: %@ ***** %@", operation.responseString, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error during logout: %@ ***** %@", operation.responseString, error);
+    }];
+    
+    [op start];
 }
 
 - (void)PHSImageViewController:(PHSImageViewController *)viewController didChooseImage:(UIImage *)image {
@@ -92,7 +119,6 @@ static NSString * const BaseURLString = @"http://northstar-qa.dosomething.org/v1
     
     // Dismisses child view controller
     [self.navigationController popViewControllerAnimated:YES];
-    
     
 }
 
