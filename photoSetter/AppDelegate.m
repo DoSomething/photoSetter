@@ -36,7 +36,28 @@ static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v
     
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     [[AFNetworkActivityLogger sharedLogger]setLevel: AFLoggerLevelDebug];
-    
+	
+#warning You'd want to move this into another class/multiple classes
+	// If you want to use AFN, you'd subclass one of their session manager classes like we do in the DSO app;
+	// otherwise, you'd make a networking class that subclasses NSObject to put this request together
+	// You should also have a separate API class that other unrelated classes (view controllers) in your app call
+	// to get info they need, if you'd have more than a few different endpoints to hit (personally, I think it's good
+	// practice to do so, period, though).  I.e., your view controller would hit your app's API class like so
+	
+	/*
+	 [APIClient loginUserWithEmail:userEmail andPassword:userPassword successBlock: ^{
+		Do something (pun intended) if we login successfully, like present next view controller
+	 } failureBlock ^{
+		Handle error depending on info we get from server: incorrect password
+	 }];
+	 
+	 */
+	
+	// I realize this is a simple project, but you should only put what's necessary in your AppDelegate.  The App
+	// Delegate is what it sounds: a delegate to handle messages that the operating system (iOS) needs to communicate
+	// to your app.  The App Delegate is your app's entry point, so you should just put whatever the top of your chain
+	// of actions is in -application didFinishLaunchingWithOptions, i.e., set a nav controller and a root view controller,
+	// start logging, initialize Core Data, etc.  Things that your app needs globally.
     NSString *northstarApiKey = @"northstarApiKey";
     NSString *userEmail = @"userEmail";
     NSString *userPassword = @"userPassword";
