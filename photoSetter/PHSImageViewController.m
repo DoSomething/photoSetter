@@ -32,6 +32,7 @@
         // Creates a UIImagePickerController instance
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         // Assigns the cameraViewController as the delegate for the object
+#warning The below error will go away if you correct the error in your header file
         imagePicker.delegate = self;
         // Defines the media source as the camera
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -43,6 +44,10 @@
         // Indicates that the image is new and not an existing image from the camera roll
         _newMedia = YES;
     }
+#warning Ideally you'd want to handle the case where the camera may not be available
+	else {
+		// It could be broken or inaccessible so you'd want to display something to the user
+	}
 }
 
 - (IBAction)useCameraRoll:(id)sender {
@@ -57,6 +62,7 @@
         // Indicates that image is already in the library and we don't need to save it again.
         _newMedia = NO;
     }
+#warning Ideally you'd want to handle the case where the photo album may not be available
 }
 
 #pragma mark - 
@@ -76,7 +82,8 @@
         
         // Local property pointing to the UIImageView, defined in the header file.
         _imageView.image = image;
-        
+		
+#warning Have never heard of this happening before but suppose it's possible
         // Xcode will complain if we access a weak property more than once here,
         // since it could in theory be nilled between accesses leading to
         // unpredictable results. So we'll start by taking a local, strong reference
@@ -104,6 +111,8 @@
 {
     // If an error occurred it's reported to the user with an alert box.
     if (error) {
+#warning UIAlertView is deprecated in iOS 8
+// Use a UIAlertViewController, unless you're still supporting iOS 7
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle: @"Save failed"
                               message: @"Failed to save image"

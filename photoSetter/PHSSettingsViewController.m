@@ -37,7 +37,10 @@ static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v
         // @TODO: add alert here that a photo must be selected.
         return;
     }
-
+	
+#warning You should never do this
+// The App Delegate isn't meant to be a global class that you can access for things like this--it is for some things, but
+// not this--you should have a class that manages a user (UserManager) that you can ask for the userID
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSString *userId = appDelegate.userId;
@@ -48,7 +51,10 @@ static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v
     NSString *apiKey = keysDictionary[@"northstarApiKey"];
     NSString *contentType = @"multipart/form-data";
     NSString *accept = @"application/json";
-    
+	
+#warning All of this networking/API stuff should be performed in an AFN subclass and not in the VC
+// This isn't the VC's responsibility to do, it's the responsibility of your networking API class to do. What if you had
+// 10 VC's that needed to make network calls? See how Aaron's doing it in the DSO app
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:BaseURLString]];
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -80,7 +86,7 @@ static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v
 }
 
 - (IBAction)logout:(id)sender {
-    
+#warning Same as above with the App Delegate singleton access/networking stuff
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSString *sessionId = appDelegate.sessionId;
@@ -113,7 +119,14 @@ static NSString * const BaseURLString = @"https://northstar-qa.dosomething.org/v
 }
 
 - (void)PHSImageViewController:(PHSImageViewController *)viewController didChooseImage:(UIImage *)image {
-    
+	
+#warning Can also do self.imageView.image = image
+// By calling self.imageView.image = image you're calling the setter function of self.imageView, which is
+// [self.imageView setImage:image]. In your implementation, you're accessing the instance variable _imageView
+// directly and setting it. But calling self.imageView.image = image accesses the imageView property's setter
+// function, so generally unless you need to do access the instance variable directly (which there are definitely
+// times you do), use the property setter and getters, i.e., self.imageView
+	
     // local variable which comes imageView property from the class extension in the implementation.
     _imageView.image = image;
     
